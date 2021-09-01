@@ -254,8 +254,7 @@
 						<h5>Email Attachment For :</h5>
 
                         <div class="row">
-
-							
+	
 							<div class="col-md-6">
 								<div class="form-group">
 									<label for="lastName1">New Deal</label>

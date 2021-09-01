@@ -41,7 +41,7 @@
       <p>Portfolio No : {{$id}}</p>
       <p>{{$currentDate}}</p>
 
-
+      {{-- <a href="{{ route('report.plotaddreport',['download'=>'pdf']) }}">Download PDF</a>   --}}
 
     </td> 
   </tr>

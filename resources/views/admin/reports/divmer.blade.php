@@ -92,8 +92,8 @@
                     <div class="col-md-3" >
 
                  
-                      <button type="submit" style=" width: 150px; margin-top: 30px;" class="btn btn-primary">Reports</button>
-
+                      <button type="submit" name="action" value="report" style=" width: 100px; margin-top: 30px; margin-right: 10px;" class="btn btn-primary">Reports</button>
+                      <button type="submit" name="action" value="export" style=" width: 100px; margin-top: 30px; " class="btn btn-success">Export</button>
 
                       </div>
                   </div>

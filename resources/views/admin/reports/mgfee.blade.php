@@ -6,7 +6,7 @@
 		<div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
-					<h3 class="page-title">Finance Reports</h3>
+					<h3 class="page-title">Management Fees Reports</h3>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
@@ -92,8 +92,8 @@
                     <div class="col-md-3" >
 
                  
-                      <button type="submit" style=" width: 150px; margin-top: 30px;" class="btn btn-primary">Reports</button>
-
+                      <button type="submit" name="action" value="report" style=" width: 100px; margin-top: 30px; margin-right: 10px;" class="btn btn-primary">Reports</button>
+                      <button type="submit" name="action" value="export" style=" width: 100px; margin-top: 30px; " class="btn btn-success">Export</button>
 
                       </div>
                   </div>

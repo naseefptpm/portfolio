@@ -7,16 +7,11 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
-class ReportExport implements FromQuery,WithHeadings
+
+class DivMerExport implements FromQuery,WithHeadings
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    // public function collection()
-    // {
-        
-    //     return Plots::all();
-    // }
+
+
     use Exportable;
 
     public function __construct($from, $to, $id)
@@ -27,7 +22,7 @@ class ReportExport implements FromQuery,WithHeadings
     }
     public function query()
     {
-        return Plots::query()->whereDate('date', '>=', $this->from)
+        return Plots::query()->where('type', '=', 'M')->whereDate('date', '>=', $this->from)
                               ->whereDate('date', '<=', $this->to)
                               ->where('portfoliono', '=', $this->id);
     }
@@ -69,5 +64,4 @@ class ReportExport implements FromQuery,WithHeadings
 
         ];
     }
-
 }

@@ -36,7 +36,7 @@
   <img src="{{ public_path() . $image_path }}" width="200" height="100"> --}}
 
     </h2></td>
-    <td><h2>Finance Report</h2>
+    <td><h2>Management Fees Report</h2>
       <p>From Period of {{$from}} - {{$to}}</p>
       <p>Portfolio No : {{$id}}</p>
       <p>{{$currentDate}}</p>

@@ -7,16 +7,12 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
-class ReportExport implements FromQuery,WithHeadings
+
+class RenewalExport implements FromQuery,WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    // public function collection()
-    // {
-        
-    //     return Plots::all();
-    // }
     use Exportable;
 
     public function __construct($from, $to, $id)
@@ -27,9 +23,16 @@ class ReportExport implements FromQuery,WithHeadings
     }
     public function query()
     {
+        $currentDate = date('Y-m-d');
+
         return Plots::query()->whereDate('date', '>=', $this->from)
                               ->whereDate('date', '<=', $this->to)
-                              ->where('portfoliono', '=', $this->id);
+                              ->where('portfoliono', '=', $this->id)
+                              ->orwhereDate('pai_lc_expiry', '<=', $currentDate)
+                              ->orwhereDate('fl_expiry', '<=', $currentDate)
+                              ->orwhereDate('poa_moj_expiry', '<=', $currentDate)
+                              ->orwhereDate('poa_warba_expiry', '<=', $currentDate)
+                              ;
     }
 
     public function headings(): array {
@@ -69,5 +72,4 @@ class ReportExport implements FromQuery,WithHeadings
 
         ];
     }
-
 }
