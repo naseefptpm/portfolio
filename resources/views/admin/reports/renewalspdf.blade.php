@@ -1,3 +1,6 @@
+<?php
+use App\Models\Clients;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,11 +58,10 @@
    
     <tr>
         <th>Expired</th> 
-       <th>Deal No.</th>
-       <th>Portfolio No</th>
        <th>Client No</th>
+       <th>Client Name</th>
+
        <th>Plot No</th>
-       <th>Date</th>
        <th>Expired At</th>
 
 
@@ -67,14 +69,13 @@
      </tr>
 
      @foreach($pailc as $plot)
+     {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+     {{ $client = str_replace(array('["','"]'),'',$clientname)}}
      <tr>
        <th>PAI Leasing Contract Expired</th>
-
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->portfoliono}}</td>
        <td>{{$plot->clientno}}</td>
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->date}}</td>
+       <td>{{$client}}</td>
+       <td>{{$plot->plotno}}</td>
        <td>{{$plot->pai_lc_expiry}}</td>
 
 
@@ -83,14 +84,14 @@
      @endforeach
 
      @foreach($fiex as $plot)
+     {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+     {{ $client = str_replace(array('["','"]'),'',$clientname)}}
      <tr>
        <th>fire Insurance Expired</th>
 
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->portfoliono}}</td>
        <td>{{$plot->clientno}}</td>
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->date}}</td>
+       <td>{{$client}}</td>
+       <td>{{$plot->plotno}}</td>
        <td>{{$plot->fi_expiry}}</td>
 
 
@@ -99,14 +100,13 @@
      @endforeach
 
      @foreach($flex as $plot)
+     {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+     {{ $client = str_replace(array('["','"]'),'',$clientname)}}
      <tr>
        <th>fire License Expired</th>
-
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->portfoliono}}</td>
        <td>{{$plot->clientno}}</td>
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->date}}</td>
+       <td>{{$client}}</td>
+       <td>{{$plot->plotno}}</td>
        <td>{{$plot->fl_expiry}}</td>
 
 
@@ -117,14 +117,14 @@
     
 
      @foreach($pmoj as $plot)
+     {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+     {{ $client = str_replace(array('["','"]'),'',$clientname)}}
      <tr>
        <th>Power of Attorney MOJ Expired</th>
 
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->portfoliono}}</td>
        <td>{{$plot->clientno}}</td>
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->date}}</td>
+       <td>{{$client}}</td>
+       <td>{{$plot->plotno}}</td>
        <td>{{$plot->poa_warba_expiry}}</td>
 
 
@@ -133,14 +133,14 @@
      @endforeach
 
      @foreach($pwab as $plot)
+     {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+     {{ $client = str_replace(array('["','"]'),'',$clientname)}}
      <tr>
        <th>Power of Attorney Warba Expired</th>
 
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->portfoliono}}</td>
        <td>{{$plot->clientno}}</td>
-       <td>{{$plot->id}}</td>
-       <td>{{$plot->date}}</td>
+       <td>{{$client}}</td>
+       <td>{{$plot->plotno}}</td>
        <td>{{$plot->poa_moj_expiry}}</td>
 
 

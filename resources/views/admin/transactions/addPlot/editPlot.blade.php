@@ -80,12 +80,17 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="firstName5">Plot Number</label>
+									<input type="text" value="{{$plots->plotno}}" name="plotnumber" class="form-control" id="firstName5" required=""> </div>
+							</div>
+							<div class="col-md-4">
 								<div class="form-group">
 									<label for="firstName5">Area Name :</label>
 									<input type="text" value="{{$plots->areaname}}" name="areaname" class="form-control" id="firstName5" required=""> </div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Block</label>
 									<input type="text" value="{{$plots->block}}" name="block" class="form-control" id="lastName1" required=""> </div>

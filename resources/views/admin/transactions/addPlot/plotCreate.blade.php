@@ -4,6 +4,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<select class="custom-select form-control" id="Location1" name="portfoliono">
+
+			@foreach($clients as $client)
+			<option value="{{$client->id}}">{{$client->id}} - {{$client->clientname}} - {{$client->clienttelephone}} </option>
+			 @endforeach
+			</select>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
 <div class="content-wrapper">
 	  <div class="container-full">
 		<!-- Content Header (Page header) -->
@@ -72,7 +98,7 @@
 									<label for="lastName1">Client No</label>
 									{{-- <select class="livesearch form-control p-3" name="livesearch"></select> --}}
 
-                                    <select class="custom-select form-control" id="Location1" name="clientno">
+                                    <select class="custom-select form-control" id="Location1" name="clientno" >
 										<option value="">---Select---</option>
                                         @foreach($clients as $client)
 							           <option value="{{$client->id}}">{{$client->id}} - {{$client->clientname}} - {{$client->clienttelephone}} </option>
@@ -91,12 +117,17 @@
 						
 
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label for="firstName5">Plot Number</label>
+									<input type="text" name="plotnumber" class="form-control" id="firstName5" required=""> </div>
+							</div>
+							<div class="col-md-4">
 								<div class="form-group">
 									<label for="firstName5">Area Name :</label>
 									<input type="text" name="areaname" class="form-control" id="firstName5" required=""> </div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Block</label>
 									<input type="text" name="block" class="form-control" id="lastName1" required=""> </div>

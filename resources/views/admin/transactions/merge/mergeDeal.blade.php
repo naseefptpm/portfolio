@@ -7,13 +7,13 @@
 		<div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
-					<h3 class="page-title">Create Plot</h3>
+					<h3 class="page-title">Merge Plots</h3>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
 								<li class="breadcrumb-item" aria-current="page">Transactions</li>
-								<li class="breadcrumb-item active" aria-current="page">Create Plot</li>
+								<li class="breadcrumb-item active" aria-current="page">Merge Plots</li>
 							</ol>
 						</nav>
 					</div>
@@ -28,7 +28,7 @@
 		 <!-- Step wizard -->
 		  <div class="box box-default">
 			<div class="box-header with-border">
-			  <h4 class="box-title">Create New Plot</h4>
+			  <h4 class="box-title">Merge Plots</h4>
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body wizard-content">
@@ -52,9 +52,22 @@
                 @csrf
 					<!-- Step 1 -->
 					<section>
-
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="firstName5">Merge With Plot one</label>
+						         <input type="text" value="{{$id}}" name="mergeone" class="form-control" id="emailAddress1" readonly>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="firstName5">Merge With Plot two</label>
+						          <input type="text" value="{{$id2}}" name="mergetwo" class="form-control" id="emailAddress1" readonly>
+							</div>
+						</div>		  
+					</div>
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label for="firstName5">Portfolio Number</label>
                                     <select class="custom-select form-control" id="Location1" name="portfoliono">
@@ -64,7 +77,7 @@
                                     </select>
 																	</div>
                             </div>
-							<div class="col-md-4">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label for="lastName1">Client No</label>
                                     <select class="custom-select form-control" id="Location1" name="clientno">
@@ -73,14 +86,22 @@
                                         @endforeach
                                     </select>							</div>
                             </div>
-							<div class="col-md-4">
+							
+						</div>
+						
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="firstName5">Plot Number</label>
+									<input type="text" name="plotno" class="form-control" id="firstName5"> </div>
+							</div>
+							<div class="col-md-6">
 								<div class="form-group">
                                 <label for="Location1">Date</label>
                                 <input type="date" class="form-control" name="date" id="jobTitle5"> 
                             </div>
 							</div>
 						</div>
-						
 
 						<div class="row">
 							<div class="col-md-6">

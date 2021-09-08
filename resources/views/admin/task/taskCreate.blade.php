@@ -84,7 +84,7 @@
 									<label for="emailAddress1">Plot Number</label>
                                     <select class="custom-select form-control" id="Location1" name="plot">
                                         @foreach($plots as $plot)
-							           <option value="{{$plot->id}}">{{$plot->id}}</option>
+							           <option value="{{$plot->plotno}}">{{$plot->plotno}}</option>
                                         @endforeach
                                     </select>							</div>
                             </div>

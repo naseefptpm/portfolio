@@ -91,6 +91,7 @@ class TransactionController extends Controller
 
             Plots::insert([
                 'portfoliono' => $request->portfoliono,
+                'plotno' => $request->plotnumber,
                 'clientno' => $request->clientno,
                 'date' => $request->date,
                 'type' => 'N',
@@ -211,6 +212,8 @@ class TransactionController extends Controller
 
             Plots::find($id)->update([
                 'portfoliono' => $request->portfoliono,
+                'plotno' => $request->plotnumber,
+
                 'clientno' => $request->clientno,
                 'date' => $request->date,
                 'type' => 'N',
@@ -572,6 +575,8 @@ class TransactionController extends Controller
                                 $clients = Clients::all();
                                 $portfolio = Portfolio::all();
                                 $id = $request->id;
+                                $id2 = $request->id2;
+
 
 
                                 Plots::whereIn('id',explode(",",$id))->delete();
@@ -580,7 +585,7 @@ class TransactionController extends Controller
                                 //  $deal = Plots::wherein('id',explode(",",$id))->find($id);;
                                 
                 
-                                return view('admin.transactions.merge.mergeDeal',compact('plots','clients','portfolio'));
+                                return view('admin.transactions.merge.mergeDeal',compact('plots','clients','portfolio','id','id2'));
                                 }   
 
                                 public function SearchDeal(){
@@ -651,10 +656,13 @@ class TransactionController extends Controller
                                 $email_attach_poa->move($up_location,$img_name);
                             
                                         Plots::insert([
-                                            'portfoliono' => $request->portfoliono,
-                                            'clientno' => $request->clientno,
-                                            'date' => $request->date,
-                                            'type' => 'M',
+                                               'mergone' => $request->mergeone,
+                                               'mergtwo' => $request->mergetwo,
+                                               'portfoliono' => $request->portfoliono,
+                                               'clientno' => $request->clientno,
+                                               'plotno' => $request->plotno,
+                                               'date' => $request->date,
+                                               'type' => 'M',
                                                'areaname' => $request->areaname,
                                                'block' => $request->block,
                                                'propertyvalue' => $request->propertyvalue,
@@ -702,7 +710,7 @@ class TransactionController extends Controller
                                 // $portfolio = Portfolio::all();
                                // $deals = Deals::where('type','LIKE', '%'.'M'.'%');
 
-                                $plots = Plots::all()->where('type', '=', 'M');
+                                $plots = Plots::all();
 
 
                 
@@ -724,11 +732,16 @@ class TransactionController extends Controller
     
                     
                     
-                                    return view('admin.transactions.split.splitDeal',compact('plots','clients','portfolio'));
+                                    return view('admin.transactions.split.splitDeal',compact('plots','clients','portfolio','id'));
                                     }  
 
                                     public function SplitStore(Request $request){
-                   
+                                        $plots = Plots::all();
+                                        $clients = Clients::all();
+                                        $portfolio = Portfolio::all();
+                                        $deals = Deals::all();
+                                        $id = $request->split;
+
                                         $validateData =$request->validate([
                                             'pai_lc_attach' => 'required|mimes:jpg,jpeg,png,pdf',
                                             'fi_attach' => 'required|mimes:jpg,jpeg,png,pdf',
@@ -781,6 +794,9 @@ class TransactionController extends Controller
                                     $email_attach_poa->move($up_location,$img_name);
                                 
                                             Plots::insert([
+                                                'split' => $request->split,
+                                                'plotno' => $request->plotno,
+
                                                 'portfoliono' => $request->portfoliono,
                                                 'clientno' => $request->clientno,
                                                 'date' => $request->date,
@@ -819,11 +835,120 @@ class TransactionController extends Controller
                                        
                                                ]);
                                 
-                                        return Redirect()->route('split.create')->with('success', 'Deal Split successfully');
+                                               return view('admin.transactions.split.splitDeal2',compact('plots','clients','portfolio','id'));
                                     
                     
                     
                                     }
+
+
+                                    public function SplitStore2(Request $request){
+                                        $plots = Plots::all();
+                                        $clients = Clients::all();
+                                        $portfolio = Portfolio::all();
+                                        $deals = Deals::all();
+                                        $id = $request->split;
+
+                                        $validateData =$request->validate([
+                                            'pai_lc_attach' => 'required|mimes:jpg,jpeg,png,pdf',
+                                            'fi_attach' => 'required|mimes:jpg,jpeg,png,pdf',
+                                            'fl_attach' => 'required|mimes:jpg,jpeg,png,pdf',
+                                            'email_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
+                                            'email_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
+                                
+                                
+                                    
+                                         ]);
+                                    
+                                    $pai_lc_attach = $request->file('pai_lc_attach');
+                                    $name_gen = hexdec(uniqid());
+                                    $image_ext = strtolower($pai_lc_attach->getClientOriginalExtension());
+                                    $img_name = $name_gen.'.'.$image_ext;
+                                    $up_location = 'file/plot/';
+                                    $last_lc = $up_location.$img_name;
+                                    $pai_lc_attach->move($up_location,$img_name);
+                                
+                                    $fi_attach = $request->file('fi_attach');
+                                    $name_gen = hexdec(uniqid());
+                                    $image_ext = strtolower($fi_attach->getClientOriginalExtension());
+                                    $img_name = $name_gen.'.'.$image_ext;
+                                    $up_location = 'file/plot/';
+                                    $last_fi = $up_location.$img_name;
+                                    $fi_attach->move($up_location,$img_name);
+                                
+                                    $fl_attach = $request->file('fl_attach');
+                                    $name_gen = hexdec(uniqid());
+                                    $image_ext = strtolower($fl_attach->getClientOriginalExtension());
+                                    $img_name = $name_gen.'.'.$image_ext;
+                                    $up_location = 'file/plot/';
+                                    $last_fl = $up_location.$img_name;
+                                    $fl_attach->move($up_location,$img_name);
+                                
+                                    $email_attach_newdeal = $request->file('email_attach_newdeal');
+                                    $name_gen = hexdec(uniqid());
+                                    $image_ext = strtolower($email_attach_newdeal->getClientOriginalExtension());
+                                    $img_name = $name_gen.'.'.$image_ext;
+                                    $up_location = 'file/plot/';
+                                    $last_newdeal = $up_location.$img_name;
+                                    $email_attach_newdeal->move($up_location,$img_name);
+                                
+                                    $email_attach_poa = $request->file('email_attach_poa');
+                                    $name_gen = hexdec(uniqid());
+                                    $image_ext = strtolower($email_attach_poa->getClientOriginalExtension());
+                                    $img_name = $name_gen.'.'.$image_ext;
+                                    $up_location = 'file/plot/';
+                                    $last_poa = $up_location.$img_name;
+                                    $email_attach_poa->move($up_location,$img_name);
+                                
+                                            Plots::insert([
+                                                'split' => $request->split,
+                                                'plotno' => $request->plotno,
+
+                                                'portfoliono' => $request->portfoliono,
+                                                'clientno' => $request->clientno,
+                                                'date' => $request->date,
+                                                'type' => 'S',
+                                                   'areaname' => $request->areaname,
+                                                   'block' => $request->block,
+                                                   'propertyvalue' => $request->propertyvalue,
+                                                   'financeamount' => $request->financeamount,
+                                                   'pairent' => $request->pairent,
+                                                   'licensedpurpose' => $request->licensedpurpose,
+                                                   'applicationno' => $request->applicationno,
+                                                   'plotareasize' => $request->plotareasize,
+                                                   'pai_lc_issue' => $request->pai_lc_issue,
+                                                   'pai_lc_expiry' => $request->pai_lc_expiry,
+                                                   'pai_lc_attach' => $last_lc,
+                                                   'fi_issue' => $request->fi_issue,
+                                                   'fi_expiry' => $request->fi_expiry,
+                                                   'fi_attach' => $last_fi,
+                                                   'fl_issue' => $request->fl_issue,
+                                                   'fl_expiry' => $request->fl_expiry,
+                                                   'fl_attach' => $last_fl,
+                                                   'poa_moj_issue' => $request->poa_moj_issue,
+                                                   'poa_moj_expiry' => $request->poa_moj_expiry,
+                                                   'poa_moj_issued_to' => $request->poa_moj_issued_to,
+                                                   'poa_warba_issue' => $request->poa_warba_issue,
+                                                   'poa_warba_expiry' => $request->poa_warba_expiry,
+                                                   'poa_warba_issued_to' => $request->poa_warba_issued_to,
+                                                   'email_attach_newdeal' => $last_newdeal,
+                                                   'email_attach_poa' => $last_poa,
+                                
+                                                   
+                                             
+                                                   'created_at' => Carbon::now()
+                                       
+                                       
+                                       
+                                               ]);
+                                
+                                           //    return Redirect()->route('transaction.addplot')->with('success', 'Plots * successfully');
+                                    
+                                          // return view('admin.transactions.split.splitDeal2',compact('id','portfolio','clients'));
+                                           return view('admin.transactions.split.split',compact('plots'));
+                    
+                                    }
+
 
                                     public function Transfer(){
                       

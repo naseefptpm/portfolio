@@ -12,6 +12,7 @@ class Fees extends Model
     protected $fillable = [
         'portfoliono',
         'calcprd',
+        'year',
         'type',
         'mgfees',
         

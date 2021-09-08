@@ -69,24 +69,19 @@
                                 <th>Task </th>
                                 <th>Client</th>
                                 <th>Due Date</th>
-                                <th>Action</th>
+                                <th colspan="2">Action</th>
 
                               </tr>
                               @foreach($tasks as $task)
 
                               <tr class="alert alert-info">
 
-      
                                 <td >{{$task->id}}</td>                            
-
                                 <td>{{$task->taskdesc}}</td>
                                 <td>{{$task->client}}</td>
-      
-      
-                      
-                                <td> {{$task->duedate}} </td>
-                                
+                                <td>{{$task->duedate}}</td>
                                 <td> <a href="{{url('task/edit/'.$task->id)}}" class="btn btn-info"><i class="far fa-edit"></i></i>Edit</a>  </td>
+                                <td> <a href="{{url('close/task/'.$task->id)}}"  class="btn btn-success">Done</a> </td>
 
                               </tr>
 

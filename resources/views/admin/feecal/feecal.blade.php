@@ -82,10 +82,10 @@
 
                                     <option   value="" > Select </a></option>
                 
-                                        <option   value="Jan - March 2021" > Jan - March 2021 </a></option>
-                                        <option   value="April - June 2021" > April - June 2021 </a></option>
-                                        <option   value="July - Sep 2021" > July - Sep 2021 </a></option>
-                                        <option   value="Oct - Dec 2021" > Oct - Dec 2021 </a></option>
+                                        <option   value="Jan - March" > Jan - March</a></option>
+                                        <option   value="April - June" > April - Jun</a></option>
+                                        <option   value="July - Sep" > July - Sep</a></option>
+                                        <option   value="Oct - Dec" > Oct - Dec</a></option>
                 
                 
                 
@@ -95,6 +95,15 @@
                           </div>
                       
                           
+                        </div>
+
+                        <div class="col-md-3" >
+
+                          <div class="form-group">
+                              <label for="lastName1">Year</label>
+    
+                               <input class="form-control" name="year" type="number" id="datepicker"  min="1900" max="2099" step="1" value="2021" required=""> 
+                        </div>
                         </div>
                         <div class="col-md-3" >
 

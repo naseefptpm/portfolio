@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clients extends Model
 {
+
+    // public function plots()
+    // {
+    //     return $this->belongsTo('App\Models\Plots', 'clientno');
+    // }
     use HasFactory;
     protected $fillable = [
         'clientname',

@@ -66,8 +66,8 @@
       <tr>
         <td>{{$plot->id}}</td>
         <td>{{$plot->areaname}}</td>
-        <td>{{$plot->propertyvalue}}</td>
         <td>{{$plot->block}}</td>
+        <td>{{$plot->propertyvalue}}</td>
         <td>{{$plot->financeamount}}</td>
         <td>{{$plot->date}}</td>
 
@@ -75,13 +75,14 @@
       </tr>
       @endforeach
    
-  {{-- <tr>
-    <td colspan="2">
-      <strong>Total Absent : </strong>  <strong> Total Leave : </strong> 
-
-    </td>
-  </tr>   --}}
-   
+      <tr>
+        <th  colspan="3" style="text-align: center;">Sum</th>
+        
+        <td>{{$propertyvalue}}</td>
+ 
+        <td>{{$finance}}</td>
+        <th></th>
+      </tr>
 </table>
 <br> <br>
 

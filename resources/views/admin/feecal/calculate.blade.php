@@ -79,10 +79,15 @@
                             <td></td> 
                             @foreach ($mgfee as $fee)
                                 
-                            <td>{{$fee->mgfeepercentage}}</td>  
+                            <td>{{$fee->mgfeepercentage}} %</td>  
                             @endforeach
 
  
+                          </tr>
+                          <tr class="table-secondary" style="color: black;">
+                            <th>Minimum Fees</th> 
+                            <td></td> 
+                            <td>{{$minfees}}</td>
                           </tr>
                           <tr class="bg-success" style="color: blue;">
                             <th>Management Fees</th> 

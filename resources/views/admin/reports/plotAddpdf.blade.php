@@ -1,3 +1,7 @@
+<?php
+use App\Models\Clients;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,8 +36,8 @@
 <table id="customers">
   <tr>
     <td><h2>
-  {{-- <?php $image_path = '/upload/easyschool.png'; ?>
-  <img src="{{ public_path() . $image_path }}" width="200" height="100"> --}}
+  {{-- <?php $image_path = '/upload/easyschool.png'; ?> --}}
+  {{-- <img src="{{asset('backend/images/logo-dark.png')}}" width="200" height="100"> --}}
 
     </h2></td>
     <td><h2>Plot Addition Report</h2>
@@ -54,33 +58,46 @@
 <table id="customers">
    
     <tr>
+        <th>Sl No.</th>
+        <th>Client No.</th>
+        <th>Client Name</th>
         <th>Plot No.</th>
         <th>Area Name</th>
         <th>Property Value</th>
-        <th>Block</th>
         <th>Finance Amount</th>
         <th>Date</th>
 
       </tr>
+      {{ $i = 1}}
+  
+
       @foreach($plots as $plot)
+      {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+      {{ $client = str_replace(array('["','"]'),'',$clientname)}}
       <tr>
-        <td>{{$plot->id}}</td>
+        <td>{{ $i++ }}</td>
+        <td>{{$plot->clientno}}</td>
+        <td>{{$client}}</td>
+
+        <td>{{$plot->plotno}}</td>
         <td>{{$plot->areaname}}</td>
         <td>{{$plot->propertyvalue}}</td>
-        <td>{{$plot->block}}</td>
         <td>{{$plot->financeamount}}</td>
         <td>{{$plot->date}}</td>
 
         
       </tr>
       @endforeach
-   
-  {{-- <tr>
-    <td colspan="2">
-      <strong>Total Absent : </strong>  <strong> Total Leave : </strong> 
 
-    </td>
-  </tr>   --}}
+     <tr>
+       <th  colspan="5" style="text-align: center;">Sum</th>
+       
+       <td>{{$propertyvalue}}</td>
+
+       <td>{{$finance}}</td>
+       <th></th>
+     </tr>
+         
    
 </table>
 <br> <br>

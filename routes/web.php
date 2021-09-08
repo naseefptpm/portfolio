@@ -121,6 +121,8 @@ Route::get('/search/merge',[TransactionController::class, 'SearchDeal']);
 Route::get('/transaction/split',[TransactionController::class,'Split'])->name('transaction.split');
 Route::get('/deal/split',[TransactionController::class,'SplitDeals'])->name('split.create');
 Route::post('/store/split', [TransactionController::class, 'SplitStore'])->name('store.split');
+Route::post('/store/split2', [TransactionController::class, 'SplitStore2'])->name('store.split2');
+
 
 
 Route::get('/tasks',[TaskController::class,'Task'])->name('tasks');
@@ -151,6 +153,9 @@ Route::get('/reports/divmergereport',[ReportsController::class,'DivMergeReport']
 
 Route::get('/reports/divmergepdf',[ReportsController::class,'DivMergePdf'])->name('report.divmerpdf');
 
+Route::get('/reports/split',[ReportsController::class,'Split'])->name('reports.split');
+
+Route::get('/reports/splitreport',[ReportsController::class,'SplitReport'])->name('report.splitreport');
 
 
 Route::get('importExportView', [ReportsController::class, 'importExportView']);
@@ -188,6 +193,8 @@ Route::get('/reports/task',[ReportsController::class,'Task'])->name('reports.tas
 Route::get('/reports/taskreport',[ReportsController::class,'TaskReport'])->name('report.taskreport');
 Route::get('/reports/taskpdf',[ReportsController::class,'TaskCreatePDF'])->name('report.taskpdf');
 
+Route::get('/reports/taskcompleted',[ReportsController::class,'TaskComplete'])->name('reports.taskcomplete');
+Route::get('/reports/taskcompletereport',[ReportsController::class,'TaskCompleteReport'])->name('report.taskcompletereport');
 
 
 Route::get('search', [TransactionController::class,'index']);

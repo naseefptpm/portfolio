@@ -31,7 +31,7 @@ class CalculateFeeController extends Controller
             $deals = Deals::all();
             $id = $request->id;
             $mgfee = Portfolio::all()->where('id','=',$id);
-
+            $minfees = Portfolio::where('id','=',$id)->value('minfeeperquarter');
             $type = Portfolio::where('id','=', $id)->value('feecalmethod');
             $dealstartdate = Plots::where('portfoliono','=', $id)->value('date');
             $currentDate = date('Y-m-d');
@@ -44,21 +44,27 @@ class CalculateFeeController extends Controller
             $feeper =  Portfolio::where('id','=', $id)->value('mgfeepercentage');
             $mult = $sum * $feeper;
 
-             
-            if($type = 'proportionate'){
-            $perday = $mult / 365;
-            $total = $perday * $days  ;
+          
 
-            } else {
+            
+             $perday = $mult / 365;
+
+             if($type == 'proportionate'){
+               $total = $perday * $days ;
+              }  else {
                 $total = $mult / 4 ;
-
-            }
-
-
+              }
+               if($total <= $minfees){
+                   $total = $minfees;
+               }
+         
+       
 
             Fees::insert([
                 'portfoliono' => $request->id,
                 'calcprd' => $request->calpd,
+                'year' => $request->year,
+
                 'type' => $type,
                 'mgfees' => $total,
        
@@ -68,7 +74,7 @@ class CalculateFeeController extends Controller
     
             ]);
 
-            return view('admin.feecal.calculate',compact('plots','total','mgfee','sum'));
+            return view('admin.feecal.calculate',compact('plots','total','mgfee','sum','minfees'));
             } 
 
 }

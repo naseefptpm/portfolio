@@ -36,8 +36,6 @@ class TaskExport implements FromQuery,WithHeadings
             'Plot Number',
             'Document Type',
             'Due Date',
-            
-
         ];
     }
 }

@@ -37,7 +37,8 @@
 
     </h2></td>
     <td><h2>Management Fees Report</h2>
-      <p>From Period of {{$from}} - {{$to}}</p>
+      {{-- <p>From Period of {{$from}} - {{$to}}</p> --}}
+      <p>Calculation Period : {{$calcprd}} {{$year}}</p>
       <p>Portfolio No : {{$id}}</p>
       <p>{{$currentDate}}</p>
 
@@ -55,23 +56,23 @@
    
     <tr>
         <th>Sl No.</th>
-        <th>Portfolio No</th>
-        <th>Fee Calculation Method</th>
-        <th>Calculation Period</th>
         <th>Management Fees</th>
-      
       </tr>
-
+      {{$i =1}}
       @foreach($mgfee as $fee)
       <tr>
 
-        <td>{{$fee->id}}</td>
-        <td>{{$fee->portfoliono}}</td>
-        <td>{{$fee->type}}</td>
-        <td>{{$fee->calcprd}}</td>
+        <td>{{$i++}}</td>
+
         <td>{{$fee->mgfees}}</td>
       </tr>
       @endforeach
+
+      <tr>
+        <th>Total</th>
+        <td>{{$sum}}</td>
+
+      </tr>
 
    
   {{-- <tr>

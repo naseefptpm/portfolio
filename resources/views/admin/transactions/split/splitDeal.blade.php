@@ -7,13 +7,13 @@
 		<div class="content-header">
 			<div class="d-flex align-items-center">
 				<div class="mr-auto">
-					<h3 class="page-title">Create Plot</h3>
+					<h3 class="page-title">Split Deal 1</h3>
 					<div class="d-inline-block align-items-center">
 						<nav>
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
 								<li class="breadcrumb-item" aria-current="page">Transactions</li>
-								<li class="breadcrumb-item active" aria-current="page">Create Plot</li>
+								<li class="breadcrumb-item active" aria-current="page">Split 1</li>
 							</ol>
 						</nav>
 					</div>
@@ -28,7 +28,7 @@
 		 <!-- Step wizard -->
 		  <div class="box box-default">
 			<div class="box-header with-border">
-			  <h4 class="box-title">Create New Plot</h4>
+			  <h4 class="box-title">Split 1</h4>
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body wizard-content">
@@ -52,6 +52,21 @@
                 @csrf
 					<!-- Step 1 -->
 					<section>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="firstName5">Deal no </label>
+									<input type="text" value="{{$id}}" name="split" class="form-control" id="emailAddress1" readonly>
+
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="firstName5">Plot Number</label>
+									<input type="text" name="plotno" class="form-control" id="firstName5"> </div>
+							</div>
+						</div>		
 
 						<div class="row">
 							<div class="col-md-4">

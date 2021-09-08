@@ -17,6 +17,8 @@ class CreateFeesTable extends Migration
             $table->id();
             $table->string('portfoliono');
             $table->string('calcprd');
+            $table->string('year');
+
             $table->string('type');
 
             $table->string('mgfees');

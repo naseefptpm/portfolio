@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+
 <div class="content-wrapper">
 	  <div class="container-full">
 		<!-- Content Header (Page header) -->
@@ -66,12 +67,45 @@
                             </select>
 
 
-                      </div>
+                          </div>
                   
-                      
-                    </div>
+                       
+                      </div>
 
-                    <div class="col-md-3" >
+                      <div class="col-md-3" >
+
+                        <div class="form-group">
+                            <label for="lastName1">Calculation Period</label>
+
+                            
+
+                           <select class="custom-select form-control" id="myForm" name="calcprd">
+                            <option   value="" > Select </a></option>
+
+                            <option   value="Jan - March" > Jan - March</a></option>
+                            <option   value="April - June" > April - Jun</a></option>
+                            <option   value="July - Sep" > July - Sep</a></option>
+                            <option   value="Oct - Dec" > Oct - Dec</a></option>
+    
+
+                            </select>
+
+
+                          </div>
+                  
+                       
+                      </div>
+
+                      <div class="col-md-3" >
+
+                        <div class="form-group">
+                            <label for="lastName1">Year</label>
+  
+                             <input class="form-control" name="year" type="number" id="datepicker"  min="1900" max="2099" step="1" value="2021" required=""> 
+                      </div>
+                      </div>
+
+                    {{-- <div class="col-md-3" >
 
                       <div class="form-group">
                           <label for="lastName1">From Date</label>
@@ -87,7 +121,7 @@
 
                           <input type="date" class="form-control" name="todate" id="todate" required=""> </div>
 
-                    </div>
+                    </div> --}}
 
                     <div class="col-md-3" >
 
@@ -179,5 +213,8 @@
 		<!-- /.content -->
 	  </div>
   </div>
+ 
 
             @endsection
+
+     

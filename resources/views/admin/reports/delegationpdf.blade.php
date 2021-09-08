@@ -1,3 +1,7 @@
+<?php
+use App\Models\Clients;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,26 +58,32 @@
 <table id="customers">
    
     <tr>
-        <th>Deal No.</th>
-        <th>Portfolio No</th>
+        <th>Sl No.</th>
         <th>Client No</th>
+        <th>Client Name</th>
         <th>Plot No</th>
-        <th>Date</th>
         <th>Power of Attorney Warba</th>
+        <th>Issued To</th>
         <th>Power of Attorney MOJ</th>
+        <th>Issued To</th>
+
       </tr>
+      {{ $i = 1}}
 
       @foreach($plots as $plot)
+      {{  $clientname = Clients::select('clientname')->where('id',$plot->clientno)->pluck('clientname'); }}
+      {{ $client = str_replace(array('["','"]'),'',$clientname)}}
       <tr>
-
-        <td>{{$plot->id}}</td>
-        <td>{{$plot->portfoliono}}</td>
+        <td>{{$i++}}</td>
         <td>{{$plot->clientno}}</td>
+        <td>{{$client}}</td>
         <td>{{$plot->id}}</td>
-        <td>{{$plot->date}}</td>
-        <td>{{$plot->poa_moj_expiry}}</td>
-
         <td>{{$plot->poa_warba_expiry}}</td>
+        <td>{{$plot->poa_warba_issued_to}}</td>
+        <td>{{$plot->poa_moj_expiry}}</td>
+        <td>{{$plot->poa_moj_issued_to}}</td>
+
+
 
       </tr>
       @endforeach

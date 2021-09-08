@@ -12,17 +12,18 @@ class MgFeeExport implements FromQuery,WithHeadings
 {
     use Exportable;
 
-    public function __construct($from, $to, $id)
-    {
-        $this->from = $from;
-        $this->to = $to;
+    public function __construct($year, $calcprd, $id)
+    {        
+        $this->year = $year;
+
+        $this->calcprd = $calcprd;
         $this->id = $id;
     }
     public function query()
     {
-        return Fees::query()->whereDate('created_at', '>=', $this->from)
-                              ->whereDate('created_at', '<=', $this->to)
-                              ->where('portfoliono', '=', $this->id);
+        return Fees::query()->where('portfoliono', '=', $this->id)
+                              ->where('year', '=', $this->year)
+                              ->where('calcprd', '=', $this->calcprd);
     }
 
     public function headings(): array {

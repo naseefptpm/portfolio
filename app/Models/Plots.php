@@ -9,13 +9,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Plots extends Model
 {
+
+    // public function clients()
+    // {
+    //     return $this->hasMany('App\Models\Clients');
+    // }
     use SoftDeletes; 
     
     protected $fillable = [
+        'plotno',
         'portfoliono',
         'clientno',
         'date',
         'type',
+        'mergone',
+        'mergtwo',
+        'split',
         'areaname',
         'block',
         'propertyvalue',

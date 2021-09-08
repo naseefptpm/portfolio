@@ -63,6 +63,7 @@
 					<div class="table-responsive">
 					  <table class="table table-hover">
 						<tr>
+						  <th>Sl No.</th>
 						  <th>Plot No.</th>
 						  <th>Area Name</th>
 						  <th>Block</th>
@@ -90,15 +91,6 @@
 						  <th>Email Attachment For New Deal</th>
 						  <th>Email Attachment For POA</th>
 
-
-
-						  
-
-
-
-
-
-
 						  <th>Action</th>
 
 
@@ -107,9 +99,11 @@
 
 
 						</tr>
+						{{$i = 1}}
 						@foreach($plots as $plot)
 						<tr>
-						  <td>{{$plot->id}}</td>
+						  <td>{{$i++}}</td>
+						  <td>{{$plot->plotno}}</td>
 						  <td>{{$plot->areaname}}</td>
                           <td>{{$plot->block}}</td>
 						  <td>{{$plot->propertyvalue}}</td>

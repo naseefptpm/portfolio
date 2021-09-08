@@ -1,3 +1,6 @@
+<?php
+use App\Models\Clients;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,29 +56,34 @@
 
 <table id="customers">
    
-    <tr>
-        <th>Client No.</th>
-        <th>Task Description</th>
-        <th>Portfolio No</th>
-        <th>Plot No</th>
-        <th>Document Type</th>
-        <th>Due Date</th>
+  <tr>
+    <th>Sl No.</th>
+    <th>Client No.</th>
+    <th>Client Name</th>
+    <th>Task Description</th>
+    <th>Plot No</th>
+    <th>Document Type</th>
+    <th>Due Date</th>
 
 
 
-      </tr>
-      @foreach($tasks as $task)
-      <tr>
-        <td>{{$task->client}}</td>
-        <td>{{$task->taskdesc}}</td>
-        <td>{{$task->portfolio}}</td>
-        <td>{{$task->plot}}</td>
-        <td>{{$task->doctype}}</td>
-        <td>{{$task->duedate}}</td>
+  </tr>
+  {{$i=1}}
+  @foreach($tasks as $task)
+  {{  $clientname = Clients::select('clientname')->where('id',$task->client)->pluck('clientname'); }}
+  {{ $client = str_replace(array('["','"]'),'',$clientname)}}
+  <tr>
+    <td>{{$i++}}</td>
+    <td>{{$task->client}}</td>
+    <td>{{$client}}</td>
+    <td>{{$task->taskdesc}}</td>
+    <td>{{$task->plot}}</td>
+    <td>{{$task->doctype}}</td>
+    <td>{{$task->duedate}}</td>
 
-        
-      </tr>
-      @endforeach
+    
+  </tr>
+  @endforeach
   {{-- <tr>
     <td colspan="2">
       <strong>Total Absent : </strong>  <strong> Total Leave : </strong> 

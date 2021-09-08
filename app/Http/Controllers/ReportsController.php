@@ -18,6 +18,8 @@ use App\Models\Task;
 use App\Models\Fees;
 use App\Exports\ReportExport;
 use App\Exports\TaskExport;
+use App\Exports\TaskCompleteExport;
+
 use App\Imports\ReportImport;
 use Maatwebsite\Excel\Facades\Excel;
 //use PDF;
@@ -97,6 +99,43 @@ class ReportsController extends Controller
 
 
 
+    public function Split(Request $request){
+       
+      $clients = Clients::all();
+      $portfolios = Portfolio::all();
+      $id = $request->id; 
+   
+      $plots = Plots::all()->where('portfoliono', '=', $id);
+
+      return view('admin.reports.split',compact('portfolios','plots'));
+  }
+
+  public function SplitReport(Request $request){
+      $clients = Clients::all();
+      $portfolios = Portfolio::all();
+      $currentDate = date('d-m-Y');
+
+      $portfolio = Portfolio::all();
+      $id = $request->id; 
+      $from = $request->fromdate;
+      $to = $request->todate;
+      $plots = Plots::all()->where('portfoliono', '=', $id)->where('split', '!=', NULL)->whereBetween('date', [$from, $to]);
+      $pdf = PDF::loadView('admin.reports.splitpdf',compact('portfolios','plots','from','to','id','currentDate'));
+
+      switch ($request->input('action')) {
+          case 'report':
+         return $pdf->stream();
+         break;
+         case 'export':
+         return Excel::download(new DivMerExport($from, $to, $id),'report.xlsx');
+         break;
+         }
+
+
+  }
+
+
+
       public function PlotAdd(Request $request){
        
         $clients = Clients::all();
@@ -112,13 +151,19 @@ class ReportsController extends Controller
         $clients = Clients::all();
         $portfolios = Portfolio::all();
         $currentDate = date('d-m-Y');
-
         $from = $request->fromdate;
         $to = $request->todate;
         $portfolio = Portfolio::all();
         $id = $request->id; 
         $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
-        $pdf = PDF::loadView('admin.reports.plotAddpdf',compact('portfolios','plots','from','to','id','currentDate'));
+        // $clientname = Clients::join('plots','plots.clientno','=','clients.clientname');
+        // $plotss = Plots::with('clients')->get();
+       // $clientname = Clients::select('clientname')->where('id',1)->get();
+       $finance = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->sum('financeamount');
+       $propertyvalue = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->sum('propertyvalue');
+
+
+        $pdf = PDF::loadView('admin.reports.plotAddpdf',compact('portfolios','plots','from','to','id','currentDate','clients','finance','propertyvalue'));
 
        // view()->share('plots',$plots,);
         switch ($request->input('action')) {
@@ -166,7 +211,9 @@ class ReportsController extends Controller
         $portfolio = Portfolio::all();
         $id = $request->id; 
         $plots = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->onlyTrashed()->latest()->paginate(5);
-        $pdf = PDF::loadView('admin.reports.plotClosepdf',compact('portfolios','plots','from','to','id','currentDate'));
+        $finance = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->onlyTrashed()->latest()->paginate(5)->sum('financeamount');
+        $propertyvalue = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->onlyTrashed()->latest()->paginate(5)->sum('propertyvalue');
+        $pdf = PDF::loadView('admin.reports.plotClosepdf',compact('portfolios','plots','from','to','id','currentDate','finance','propertyvalue'));
 
         switch ($request->input('action')) {
             case 'report':
@@ -303,8 +350,9 @@ class ReportsController extends Controller
         $from = $request->fromdate;
         $to = $request->todate;
         $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
-
-        $pdf = PDF::loadView('admin.reports.financepdf',compact('portfolios','plots','from','to','id','currentDate'));
+        $finance = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->sum('financeamount');
+        $propertyvalue = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->sum('propertyvalue');
+        $pdf = PDF::loadView('admin.reports.financepdf',compact('portfolios','plots','from','to','id','currentDate','finance','propertyvalue'));
 
         switch ($request->input('action')) {
             case 'report':
@@ -327,7 +375,7 @@ class ReportsController extends Controller
         $portfolios = Portfolio::all();
         $id = $request->id; 
         $plots = Plots::all()->where('portfoliono', '=', $id);
-        $mgfee = Fees::all()->where('portfoliono','=',$id);
+        $mgfee = Fees::all();
 
       
 
@@ -341,20 +389,26 @@ class ReportsController extends Controller
         $currentDate = date('d-m-Y');
 
         $id = $request->id; 
-        $from = $request->fromdate;
-        $to = $request->todate;
-        $mgfee = Fees::all()->where('portfoliono','=',$id)->whereBetween('created_at', [$from, $to]);
+        $year = $request->year;
+        $calcprd = $request->calcprd;
+        // $from = $request->fromdate;
+        // $to = $request->todate;
+        // $mgfee = Fees::all()->where('portfoliono','=',$id)->whereBetween('created_at', [$from, $to]);
 
-        $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
+        // $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
+        $mgfee = Fees::all()->where('portfoliono','=',$id)->where('year','=',$year)->where('calcprd','=',$calcprd);
+        $sum = Fees::all()->where('portfoliono','=',$id)->where('year','=',$year)->where('calcprd','=',$calcprd)->sum('mgfees');
 
-        $pdf = PDF::loadView('admin.reports.mgfeepdf',compact('portfolios','plots','mgfee','from','to','id','currentDate'));
+
+
+        $pdf = PDF::loadView('admin.reports.mgfeepdf',compact('portfolios','mgfee','year','calcprd','id','currentDate','sum'));
 
         switch ($request->input('action')) {
             case 'report':
            return $pdf->stream();
            break;
            case 'export':
-           return Excel::download(new MgFeeExport($from, $to, $id),'report.xlsx');
+           return Excel::download(new MgFeeExport($year, $calcprd, $id),'report.xlsx');
            break;
            }
 
@@ -385,7 +439,8 @@ class ReportsController extends Controller
         $currentDate = date('d-m-Y');
         $from = $request->fromdate;
         $to = $request->todate;
-        $tasks = Task::where('portfolio', '=', $id)->whereBetween('created_at', [$from, $to])->whereDate('duedate', '>=', $currentDate)->get();
+        $tasks = Task::where('portfolio', '=', $id)->whereBetween('created_at', [$from, $to])->get();
+        //->whereDate('duedate', '>=', $currentDate)
 
         $pdf = PDF::loadView('admin.reports.taskpdf',compact('portfolios','tasks','from','to','id','currentDate'));
 
@@ -403,20 +458,47 @@ class ReportsController extends Controller
     }
 
 
-    public function TaskCreatePDF() {
-        // retreive all records from db
+    public function TaskComplete(Request $request){
        
-       $currentDate = date('Y-m-d');
+      $clients = Clients::all();
+      $portfolios = Portfolio::all();
+      $id = $request->id; 
+      $currentDate = date('Y-m-d');
 
-        $tasks = Task::whereDate('duedate', '<=', $currentDate)->get();
+      $tasks = Task::where('portfolio', '=', $id)->whereDate('duedate', '>=', $currentDate)->get();
+    
 
-        // share data to view
-        view()->share('tasks',$tasks);
-        $pdf = PDF::loadView('admin.reports.taskpdf',$tasks);
-  
-        // download PDF file with download method
-        return $pdf->download('pdf_file.pdf');
-      }
+      return view('admin.reports.taskComplete',compact('portfolios','tasks'));
+  }
+
+  public function TaskCompleteReport(Request $request){
+      $clients = Clients::all();
+      $portfolios = Portfolio::all();
+      $portfolio = Portfolio::all();
+      $id = $request->id; 
+      $currentDate = date('d-m-Y');
+      $from = $request->fromdate;
+      $to = $request->todate;
+      $tasks = Task::where('portfolio', '=', $id)->whereBetween('created_at', [$from, $to])->onlyTrashed()->latest()->paginate(5);
+      //->whereDate('duedate', '>=', $currentDate)
+
+      $pdf = PDF::loadView('admin.reports.taskCompletePdf',compact('portfolios','tasks','from','to','id','currentDate'));
+
+      switch ($request->input('action')) {
+          case 'report':
+         return $pdf->stream();
+         break;
+         case 'export':
+         return Excel::download(new TaskCompleteExport($from, $to, $id),'report.xlsx');
+         break;
+         }
+
+   //   return view('admin.reports.taskpdf',compact('portfolios','portfolios','tasks','from','to','id','currentDate'));
+
+  }
+
+
+ 
 
 
 

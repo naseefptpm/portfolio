@@ -119,12 +119,15 @@ $route = Route::current()->getName();
           <ul class="treeview-menu">
             <li class="{{ ($route == 'reports.plotadd')?'active':'' }}" ><a href="{{ route('reports.plotadd') }}"><i class="ti-more"></i>Plot Addition</a></li>
             <li class="{{ ($route == 'reports.plotclose')?'active':'' }}" ><a href="{{ route('reports.plotclose') }}"><i class="ti-more"></i>Plot Closure</a></li>
-            <li class="{{ ($route == 'reports.divmer')?'active':'' }}" ><a href="{{ route('reports.divmer') }}"><i class="ti-more"></i>Dividing & Merging</a></li>
+            <li class="{{ ($route == 'reports.divmer')?'active':'' }}" ><a href="{{ route('reports.divmer') }}"><i class="ti-more"></i>Merge Reports</a></li>
+            <li class="{{ ($route == 'reports.split')?'active':'' }}" ><a href="{{ route('reports.split') }}"><i class="ti-more"></i>Split Reports</a></li>
             <li class="{{ ($route == 'reports.renewals')?'active':'' }}" ><a href="{{ route('reports.renewals') }}"><i class="ti-more"></i>Renewals Due Date</a></li>
             <li class="{{ ($route == 'reports.delegation')?'active':'' }}" ><a href="{{ route('reports.delegation') }}"><i class="ti-more"></i>Delegation List</a></li>
             <li class="{{ ($route == 'reports.finance')?'active':'' }}" ><a href="{{ route('reports.finance') }}"><i class="ti-more"></i>Finance Report</a></li>
             <li class="{{ ($route == 'reports.mgfee')?'active':'' }}" ><a href="{{ route('reports.mgfee') }}"><i class="ti-more"></i>Management Fee Report</a></li>
             <li class="{{ ($route == 'reports.task')?'active':'' }}" ><a href="{{ route('reports.task') }}"><i class="ti-more"></i>Pending Task</a></li>
+            <li class="{{ ($route == 'reports.taskcomplete')?'active':'' }}" ><a href="{{ route('reports.taskcomplete') }}"><i class="ti-more"></i>Completed Task</a></li>
+
 
 
 

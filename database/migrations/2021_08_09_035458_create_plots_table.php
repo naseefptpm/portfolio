@@ -15,11 +15,16 @@ class CreatePlotsTable extends Migration
     {
         Schema::create('plots', function (Blueprint $table) {
             $table->id();
-            
-            $table->string('portfoliono');
-            $table->string('clientno');
+            $table->integer('plotno');
+
+            $table->integer('portfoliono');
+            $table->integer('clientno');
             $table->date('date');
             $table->string('type');
+            $table->string('mergone')->nullable();
+            $table->string('mergtwo')->nullable();
+            $table->string('split')->nullable();
+
             $table->string('areaname');
             $table->string('block');
             $table->integer('propertyvalue');

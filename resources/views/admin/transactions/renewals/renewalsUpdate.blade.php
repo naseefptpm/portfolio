@@ -99,7 +99,7 @@
                                     <div class="form-group">
                                         <label for="lastName1">Client No</label>
                                         <select class="custom-select form-control" id="Location1" name="reclientno">
-                                            <option value="{{$plot->clientno}}" selected>{{$plot->clientno}}</option>
+                                            <option value="{{$plot->clientno}}" selected>{{$plot->clientno }} </option>
 
                                             @foreach($clients as $client)
                                            <option value="{{$client->id}}">{{$client->id}}</option>
