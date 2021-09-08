@@ -29,14 +29,14 @@ class PortfolioController extends Controller
     
         $agreementattach = $request->file('agreementattach');
     
-      
-        
         $name_gen = hexdec(uniqid());
-    $image_ext = strtolower($agreementattach->getClientOriginalExtension());
-    $img_name = $name_gen.'.'.$image_ext;
-    $up_location = 'file/agreement/';
-    $last_img = $up_location.$img_name;
-    $agreementattach->move($up_location,$img_name);
+        $image_ext = strtolower($agreementattach->getClientOriginalExtension());
+        $img_name = $name_gen.'.'.$image_ext;
+        $up_location = 'file/agreement/';
+        $last_img = $up_location.$img_name;
+        $agreementattach->move($up_location,$img_name);
+        
+       
         
          
     

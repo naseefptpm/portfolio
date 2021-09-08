@@ -44,8 +44,15 @@ class TransactionController extends Controller
             'fl_attach' => 'required|mimes:jpg,jpeg,png,pdf',
             'email_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
             'email_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
+            
+            'pai_lc_issue' => 'required|date|before:pai_lc_expiry',
+            'fi_issue' => 'required|date|before:fi_expiry',
+            'fl_issue' => 'required|date|before:fl_expiry',
+            'poa_moj_issue' => 'required|date|before:poa_moj_expiry',
+            'poa_warba_issue' => 'required|date|before:poa_warba_expiry',
 
-
+            
+           
     
          ]);
     
@@ -150,6 +157,11 @@ class TransactionController extends Controller
             'email_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
             'email_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
     
+            'pai_lc_issue' => 'required|date|before:pai_lc_expiry',
+            'fi_issue' => 'required|date|before:fi_expiry',
+            'fl_issue' => 'required|date|before:fl_expiry',
+            'poa_moj_issue' => 'required|date|before:poa_moj_expiry',
+            'poa_warba_issue' => 'required|date|before:poa_warba_expiry',
          ]);
     
        
@@ -461,7 +473,11 @@ class TransactionController extends Controller
                             'reemail_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
                             'reemail_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
                 
-                
+                            'repai_lc_issue' => 'required|date|before:repai_lc_expiry',
+                            'refi_issue' => 'required|date|before:refi_expiry',
+                            'refl_issue' => 'required|date|before:refl_expiry',
+                            'repoa_moj_issue' => 'required|date|before:repoa_moj_expiry',
+                            'repoa_warba_issue' => 'required|date|before:repoa_warba_expiry',
                     
                          ]);
                     
@@ -611,7 +627,11 @@ class TransactionController extends Controller
                                         'email_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
                                         'email_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
                             
-                            
+                                        'pai_lc_issue' => 'required|date|before:pai_lc_expiry',
+                                        'fi_issue' => 'required|date|before:fi_expiry',
+                                        'fl_issue' => 'required|date|before:fl_expiry',
+                                        'poa_moj_issue' => 'required|date|before:poa_moj_expiry',
+                                        'poa_warba_issue' => 'required|date|before:poa_warba_expiry',
                                 
                                      ]);
                                 
@@ -749,7 +769,11 @@ class TransactionController extends Controller
                                             'email_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
                                             'email_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
                                 
-                                
+                                            'pai_lc_issue' => 'required|date|before:pai_lc_expiry',
+                                            'fi_issue' => 'required|date|before:fi_expiry',
+                                            'fl_issue' => 'required|date|before:fl_expiry',
+                                            'poa_moj_issue' => 'required|date|before:poa_moj_expiry',
+                                            'poa_warba_issue' => 'required|date|before:poa_warba_expiry',
                                     
                                          ]);
                                     
@@ -856,7 +880,11 @@ class TransactionController extends Controller
                                             'email_attach_newdeal' => 'required|mimes:jpg,jpeg,png,pdf',
                                             'email_attach_poa' => 'required|mimes:jpg,jpeg,png,pdf',
                                 
-                                
+                                            'pai_lc_issue' => 'required|date|before:pai_lc_expiry',
+                                            'fi_issue' => 'required|date|before:fi_expiry',
+                                            'fl_issue' => 'required|date|before:fl_expiry',
+                                            'poa_moj_issue' => 'required|date|before:poa_moj_expiry',
+                                            'poa_warba_issue' => 'required|date|before:poa_warba_expiry',
                                     
                                          ]);
                                     

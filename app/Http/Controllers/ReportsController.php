@@ -82,6 +82,13 @@ class ReportsController extends Controller
         $id = $request->id; 
         $from = $request->fromdate;
         $to = $request->todate;
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
         $plots = Plots::all()->where('portfoliono', '=', $id)->where('type', '=', 'M')->whereBetween('date', [$from, $to]);
         $pdf = PDF::loadView('admin.reports.divmerpdf',compact('portfolios','plots','from','to','id','currentDate'));
 
@@ -119,6 +126,13 @@ class ReportsController extends Controller
       $id = $request->id; 
       $from = $request->fromdate;
       $to = $request->todate;
+      $request->validate([
+
+        'todate' => 'required',
+    
+        'fromdate' => 'required|date|before:todate'
+    
+    ]);
       $plots = Plots::all()->where('portfoliono', '=', $id)->where('split', '!=', NULL)->whereBetween('date', [$from, $to]);
       $pdf = PDF::loadView('admin.reports.splitpdf',compact('portfolios','plots','from','to','id','currentDate'));
 
@@ -153,6 +167,13 @@ class ReportsController extends Controller
         $currentDate = date('d-m-Y');
         $from = $request->fromdate;
         $to = $request->todate;
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
         $portfolio = Portfolio::all();
         $id = $request->id; 
         $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
@@ -208,6 +229,15 @@ class ReportsController extends Controller
 
         $from = $request->fromdate;
         $to = $request->todate;
+
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
+
         $portfolio = Portfolio::all();
         $id = $request->id; 
         $plots = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->onlyTrashed()->latest()->paginate(5);
@@ -239,6 +269,9 @@ class ReportsController extends Controller
         $id = $request->id; 
         $from = $request->fromdate;
         $to = $request->todate;
+
+        
+
         $currentDate = date('Y-m-d');
         $pailc = Plots::where('portfoliono', '=', $id)->whereDate('pai_lc_expiry', '<=', $currentDate)->get();
         $fiex = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->get();
@@ -256,6 +289,15 @@ class ReportsController extends Controller
         $id = $request->id; 
         $from = $request->fromdate;
         $to = $request->todate;
+
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
+
         $currentDate = date('Y-m-d');
        // $pailc = Plots::where('portfoliono', '=', $id)->whereDate('pai_lc_expiry', '<=', $currentDate)->get();
         $pailc = Plots::where('portfoliono', '=', $id)->whereDate('pai_lc_expiry', '<=', $currentDate)->whereBetween('date', [$from, $to])->get();
@@ -304,6 +346,13 @@ class ReportsController extends Controller
         $id = $request->id; 
         $from = $request->fromdate;
         $to = $request->todate;
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
         $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
 
         $pdf = PDF::loadView('admin.reports.delegationpdf',compact('portfolios','plots','from','to','id','currentDate'));
@@ -349,6 +398,14 @@ class ReportsController extends Controller
         $id = $request->id; 
         $from = $request->fromdate;
         $to = $request->todate;
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
+
         $plots = Plots::all()->where('portfoliono', '=', $id)->whereBetween('date', [$from, $to]);
         $finance = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->sum('financeamount');
         $propertyvalue = Plots::where('portfoliono', '=', $id)->whereBetween('date', [$from, $to])->sum('propertyvalue');
@@ -439,6 +496,15 @@ class ReportsController extends Controller
         $currentDate = date('d-m-Y');
         $from = $request->fromdate;
         $to = $request->todate;
+
+        $request->validate([
+
+            'todate' => 'required',
+        
+            'fromdate' => 'required|date|before:todate'
+        
+        ]);
+
         $tasks = Task::where('portfolio', '=', $id)->whereBetween('created_at', [$from, $to])->get();
         //->whereDate('duedate', '>=', $currentDate)
 
@@ -479,6 +545,13 @@ class ReportsController extends Controller
       $currentDate = date('d-m-Y');
       $from = $request->fromdate;
       $to = $request->todate;
+      $request->validate([
+
+        'todate' => 'required',
+    
+        'fromdate' => 'required|date|before:todate'
+    
+    ]);
       $tasks = Task::where('portfolio', '=', $id)->whereBetween('created_at', [$from, $to])->onlyTrashed()->latest()->paginate(5);
       //->whereDate('duedate', '>=', $currentDate)
 

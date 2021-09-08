@@ -162,7 +162,11 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Issue</label>
-									<input type="date" name="pai_lc_issue" class="form-control" id="lastName1"> </div>
+									<input type="date" name="pai_lc_issue" class="form-control" id="lastName1"> 
+									@if($errors->has('pai_lc_issue'))
+									<span class="text-danger">{{ $errors->first('pai_lc_issue') }}</span>
+								@endif
+								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
@@ -184,7 +188,11 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Issue</label>
-									<input type="date" name="fi_issue" class="form-control" id="lastName1"> </div>
+									<input type="date" name="fi_issue" class="form-control" id="lastName1">
+									@if($errors->has('fi_issue'))
+									<span class="text-danger">{{ $errors->first('fi_issue') }}</span>
+								@endif
+								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
@@ -206,7 +214,11 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Issue</label>
-									<input type="date" name="fl_issue" class="form-control" id="lastName1"> </div>
+									<input type="date" name="fl_issue" class="form-control" id="lastName1">
+									@if($errors->has('fl_issue'))
+									<span class="text-danger">{{ $errors->first('fl_issue') }}</span>
+								@endif
+								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
@@ -228,7 +240,11 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Issue</label>
-									<input type="date" name="poa_moj_issue" class="form-control" id="lastName1"> </div>
+									<input type="date" name="poa_moj_issue" class="form-control" id="lastName1">
+									@if($errors->has('poa_moj_issue'))
+									<span class="text-danger">{{ $errors->first('poa_moj_issue') }}</span>
+								@endif
+								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">
@@ -250,7 +266,11 @@
 							<div class="col-md-4">
 								<div class="form-group">
 									<label for="lastName1">Issue</label>
-									<input type="date" name="poa_warba_issue" class="form-control" id="lastName1"> </div>
+									<input type="date" name="poa_warba_issue" class="form-control" id="lastName1"> 
+									@if($errors->has('poa_warba_issue'))
+									<span class="text-danger">{{ $errors->first('poa_warba_issue') }}</span>
+								@endif
+								</div>
 							</div>
 							<div class="col-md-4">
 								<div class="form-group">

@@ -124,7 +124,11 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="lastName1">Issue</label>
-                                        <input type="date" value="{{$plot->pai_lc_issue}}" name="repai_lc_issue" class="form-control" id="lastName1"> </div>
+                                        <input type="date" value="{{$plot->pai_lc_issue}}" name="repai_lc_issue" class="form-control" id="lastName1">
+                                        @if($errors->has('repai_lc_issue'))
+                                        <span class="text-danger">{{ $errors->first('repai_lc_issue') }}</span>
+                                    @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -152,7 +156,11 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="lastName1">Issue</label>
-                                        <input type="date" value="{{$plot->fi_issue}}" name="refi_issue" class="form-control" id="lastName1"> </div>
+                                        <input type="date" value="{{$plot->fi_issue}}" name="refi_issue" class="form-control" id="lastName1">
+                                        @if($errors->has('refi_issue'))
+                                        <span class="text-danger">{{ $errors->first('refi_issue') }}</span>
+                                    @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -180,7 +188,11 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="lastName1">Issue</label>
-                                        <input type="date" value="{{$plot->fl_issue}}" name="refl_issue" class="form-control" id="lastName1"> </div>
+                                        <input type="date" value="{{$plot->fl_issue}}" name="refl_issue" class="form-control" id="lastName1"> 
+                                        @if($errors->has('refl_issue'))
+                                        <span class="text-danger">{{ $errors->first('refl_issue') }}</span>
+                                    @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -208,7 +220,11 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="lastName1">Issue</label>
-                                        <input type="date" value="{{$plot->poa_moj_issue}}" name="repoa_moj_issue" class="form-control" id="lastName1"> </div>
+                                        <input type="date" value="{{$plot->poa_moj_issue}}" name="repoa_moj_issue" class="form-control" id="lastName1"> 
+                                        @if($errors->has('repoa_moj_issue'))
+                                        <span class="text-danger">{{ $errors->first('repoa_moj_issue') }}</span>
+                                    @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -230,7 +246,11 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="lastName1">Issue</label>
-                                        <input type="date" value="{{$plot->poa_warba_issue}}" name="repoa_warba_issue" class="form-control" id="lastName1"> </div>
+                                        <input type="date" value="{{$plot->poa_warba_issue}}" name="repoa_warba_issue" class="form-control" id="lastName1">
+                                        @if($errors->has('repoa_warba_issue'))
+                                        <span class="text-danger">{{ $errors->first('repoa_warba_issue') }}</span>
+                                    @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">

@@ -77,6 +77,9 @@
                               <label for="lastName1">From Date</label>
 
                               <input type="date" class="form-control" name="fromdate" id="fromdate" required=""> </div>
+                              @if($errors->has('fromdate'))
+                              <span class="text-danger">{{ $errors->first('fromdate') }}</span>
+                          @endif
 
                         </div>
                     
@@ -86,7 +89,9 @@
                               <label for="lastName1">To Date</label>
   
                               <input type="date" class="form-control" name="todate" id="todate" required=""> </div>
-  
+                              @if($errors->has('todate'))
+                              <span class="text-danger">{{ $errors->first('todate') }}</span>
+                          @endif
                         </div>
 
                         <div class="col-md-3" >
