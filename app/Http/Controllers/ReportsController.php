@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ClientExport;
 use App\Exports\DelegationExport;
 use App\Exports\DivMerExport;
 use App\Exports\FinanceExport;
@@ -22,6 +23,7 @@ use App\Exports\TaskCompleteExport;
 
 use App\Imports\ReportImport;
 use Maatwebsite\Excel\Facades\Excel;
+
 //use PDF;
 //use Barryvdh\DomPDF\PDF;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -192,7 +194,9 @@ class ReportsController extends Controller
         return $pdf->stream();
         break;
         case 'export':
-        return Excel::download(new ReportExport($from, $to, $id),'report.xlsx');
+        // return Excel::download(new ReportExport($from, $to, $id),'report.xlsx');
+        return Excel::download(new ClientExport,'clientreport.xlsx');
+
         break;
         }
 

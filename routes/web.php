@@ -200,6 +200,10 @@ Route::get('/reports/taskcompletereport',[ReportsController::class,'TaskComplete
 Route::get('search', [TransactionController::class,'index']);
 Route::get('ajax-autocomplete-search', [TransactionController::class,'selectSearch']);
 
+Route::get('/import-form',[ClientController::class,'ImportForm']);
+Route::post('/import',[ClientController::class,'import'])->name('clients.import');
+
+
 
 
 

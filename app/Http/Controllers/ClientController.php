@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Clients;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ClientsImport;
 
 class ClientController extends Controller
 {
@@ -89,6 +91,17 @@ class ClientController extends Controller
         return view('admin.clients.clients',compact('clients'));
 
 
+
+    }
+
+    public function ImportForm(){
+
+        return view('import-form');
+    }
+
+    public function import(Request $request){
+      Excel::import(new ClientsImport, $request->file);
+      return "Records are Imported Successfully";
 
     }
 
